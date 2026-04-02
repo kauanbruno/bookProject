@@ -1,0 +1,23 @@
+{
+    "books": [
+    {
+        "id": 1,
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "publisher": "Scribner",
+        "publishedYear": 1925,
+        "totalPages": 180,
+        "pagesRead": 50,
+        "status": "Reading"
+    },{
+        "id": 2,
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "publisher": "J.B. Lippincott & Co.",
+        "publishedYear": 1960,
+        "totalPages": 281,
+        "pagesRead": 281,
+        "status": "Completed"
+    }
+    ]
+}
