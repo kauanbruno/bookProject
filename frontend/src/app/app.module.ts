@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientJsonpModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +27,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppRoutingModule,
     MatToolbarModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientJsonpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
