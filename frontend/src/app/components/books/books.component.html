@@ -1,6 +1,20 @@
 <p class="h-middle">Aqui vai ter a lista de livros, podendo ordená-los por diferentes critérios.</p>
-<ul>
-  <li *ngFor="let book of books">
-    {{ book.title }}
-  </li>
-</ul>
+<h2>Minha Lista de Livros</h2>
+
+<div *ngIf="books?.length > 0; else noBooks">
+  <ul>
+    <li *ngFor="let book of books">
+      <h3>{{ book.title }}</h3>
+      <p>Autor: {{ book.author }}</p>
+      <p>Editora: {{ book.publisher }}</p>
+      <p>Ano: {{ book.publishedYear }}</p>
+      <p>Páginas: {{ book.pagesRead }} / {{ book.totalPages }}</p>
+      <p>Status: {{ book.status }}</p>
+      <hr>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noBooks>
+  <p>Carregando livros ou nenhum livro encontrado...</p>
+</ng-template>

@@ -11,8 +11,8 @@ export class BooksService {
     
   };
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>('http://localhost:3001/books');
-  };
+  return this.http.get<Book[]>('http://localhost:3001/books');
+};
 }
 export interface Book {
   id: number;
