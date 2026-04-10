@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     padding: 0 16px;
+    background-color: var(--bg-card);
 }
 
 .header-logo {
@@ -17,6 +18,7 @@
 
 .header .logo {
     max-height: 32px;
+    width: auto;
 }
 
 .header-nav {
@@ -33,18 +35,18 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    color: #666;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
 .header-nav a:hover {
-    background: rgba(103, 58, 183, 0.1);
-    color: #673ab7;
+    background: rgba(103, 58, 183, 0.2);
+    color: var(--primary-dark);
 }
 
 .header-nav a.active {
-    background: linear-gradient(135deg, #673ab7, #9c27b0);
+    background: var(--gradient-primary);
     color: white;
 }
 
@@ -65,7 +67,7 @@
     align-items: center;
     gap: 12px;
     font-size: 14px;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .user-name {
@@ -73,19 +75,19 @@
 }
 
 .user-info button {
-    color: #666;
+    color: var(--text-secondary);
     transition: color 0.2s;
 }
 
 .user-info button:hover {
-    color: #673ab7;
+    color: var(--primary-dark);
 }
 
 .login-btn {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #673ab7;
+    color: var(--primary);
 }
 
 .login-btn .material-icons {
@@ -97,12 +99,12 @@
 }
 
 .theme-toggle {
-    color: #666;
+    color: var(--text-secondary);
     transition: color 0.2s;
 }
 
 .theme-toggle:hover {
-    color: #673ab7;
+    color: var(--primary-dark);
 }
 
 .theme-toggle .material-icons {
@@ -137,7 +139,7 @@
         left: -100%;
         width: 70%;
         height: calc(100vh - 64px);
-        background: white;
+        background: var(--bg-card);
         flex-direction: column;
         align-items: flex-start;
         padding: 1rem;

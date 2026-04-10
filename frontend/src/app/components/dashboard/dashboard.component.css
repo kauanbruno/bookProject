@@ -1,6 +1,6 @@
 .dashboard-container {
   min-height: calc(100vh - 100px);
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   padding: 1rem;
   overflow-x: auto;
 }
@@ -22,12 +22,12 @@
 .dashboard-header h1 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   margin: 0 0 0.25rem;
 }
 
 .dashboard-header p {
-  color: #666;
+  color: var(--text-secondary);
   margin: 0;
   font-size: 0.9rem;
 }
@@ -41,7 +41,7 @@
 
 .sort-label {
   font-size: 0.85rem;
-  color: #888;
+  color: var(--text-secondary);
   margin-right: 0.25rem;
 }
 
@@ -50,11 +50,11 @@
   align-items: center;
   gap: 0.25rem;
   padding: 0.4rem 0.75rem;
-  background: white;
-  border: 1px solid #ddd;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -64,13 +64,13 @@
 }
 
 .sort-btn:hover {
-  border-color: #673ab7;
-  color: #673ab7;
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .sort-btn.active {
-  background: linear-gradient(135deg, #673ab7, #9c27b0);
-  border-color: #673ab7;
+  background: var(--gradient-primary);
+  border-color: var(--primary);
   color: white;
 }
 
@@ -86,7 +86,8 @@
   flex: 1;
   min-width: 280px;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1rem;
   display: flex;
@@ -117,7 +118,7 @@
 
 .column-header .material-icons {
   font-size: 1.5rem;
-  color: white !important;
+  color: white;
 }
 
 .column-header h2 {
@@ -125,7 +126,7 @@
   font-weight: 600;
   margin: 0;
   flex: 1;
-  color: white !important;
+  color: white;
 }
 
 .column-header .count {
@@ -143,14 +144,15 @@
   padding: 0.5rem;
   overflow-y: auto;
   overflow-x: hidden;
+  background: var(--bg-card);
 }
 
 .book-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 0.75rem;
   margin-bottom: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-card);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -159,7 +161,7 @@
 }
 
 .book-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-card-hover);
   transform: translateY(-2px);
 }
 
@@ -176,7 +178,7 @@
   margin: 0 0 0.25rem;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -185,7 +187,7 @@
 .book-card-content .author {
   margin: 0 0 0.5rem;
   font-size: 0.8rem;
-  color: #888;
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -193,7 +195,7 @@
 
 .progress-bar {
   height: 4px;
-  background: #e0e0e0;
+  background: var(--border-color);
   border-radius: 2px;
   overflow: hidden;
   margin-bottom: 0.25rem;
@@ -201,7 +203,7 @@
 
 .progress {
   height: 100%;
-  background: linear-gradient(90deg, #673ab7, #9c27b0);
+  background: var(--gradient-primary);
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -212,11 +214,11 @@
 
 .book-card-content .pages {
   font-size: 0.7rem;
-  color: #aaa;
+  color: var(--text-muted);
 }
 
 .drag-handle {
-  color: #ccc;
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -229,12 +231,12 @@
 .cdk-drag-preview {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  background: white;
+  background: var(--bg-card);
 }
 
 .cdk-drag-placeholder {
   background: rgba(103, 58, 183, 0.1);
-  border: 2px dashed #673ab7;
+  border: 2px dashed var(--primary);
   border-radius: 8px;
   min-height: 80px;
 }

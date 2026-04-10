@@ -1,7 +1,7 @@
 .home-container {
   min-height: calc(100vh - 100px);
   padding: 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
 .hero {
@@ -13,13 +13,13 @@
 .hero-content h1 {
   font-size: 2.5rem;
   font-weight: 300;
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .hero-content h1 .highlight {
   font-weight: 700;
-  background: linear-gradient(135deg, #673ab7, #9c27b0);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -27,7 +27,7 @@
 
 .hero-content p {
   font-size: 1.1rem;
-  color: #666;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto 2rem;
   line-height: 1.6;
@@ -52,7 +52,7 @@
 .stat-card .material-icons {
   display: block;
   font-size: 2.5rem;
-  color: #673ab7;
+  color: var(--primary);
   margin: 0 auto 0.5rem;
 }
 
@@ -69,22 +69,22 @@
 }
 
 .stat-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-card);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .stat-card .material-icons {
   font-size: 2.5rem;
-  color: #673ab7;
+  color: var(--primary);
   margin-bottom: 0.5rem;
 }
 
@@ -92,13 +92,13 @@
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .stat-label {
   display: block;
   font-size: 0.85rem;
-  color: #888;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 0.25rem;
@@ -116,7 +116,7 @@
 .section-header h2 {
   font-size: 1.5rem;
   font-weight: 500;
-  color: #333;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -129,7 +129,7 @@
 
 .sort-label {
   font-size: 0.85rem;
-  color: #888;
+  color: var(--text-secondary);
   margin-right: 0.5rem;
 }
 
@@ -138,11 +138,11 @@
   align-items: center;
   gap: 0.25rem;
   padding: 0.4rem 0.75rem;
-  background: white;
-  border: 1px solid #ddd;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -152,25 +152,25 @@
 }
 
 .sort-btn:hover {
-  border-color: #673ab7;
-  color: #673ab7;
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .sort-btn.active {
-  background: linear-gradient(135deg, #673ab7, #9c27b0);
-  border-color: #673ab7;
+  background: var(--gradient-primary);
+  border-color: var(--primary);
   color: white;
 }
 
 .view-all {
-  color: #673ab7;
+  color: var(--primary);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
 
 .view-all:hover {
-  color: #9c27b0;
+  color: var(--primary-dark);
 }
 
 .books-grid {
@@ -180,24 +180,26 @@
 }
 
 .book-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-card);
   display: flex;
   gap: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .book-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .book-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #673ab7, #9c27b0);
+  background: var(--gradient-primary);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -219,7 +221,7 @@
   margin: 0 0 0.25rem;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -228,12 +230,12 @@
 .book-info .author {
   margin: 0 0 0.75rem;
   font-size: 0.85rem;
-  color: #888;
+  color: var(--text-secondary);
 }
 
 .progress {
   height: 6px;
-  background: #e0e0e0;
+  background: var(--border-color);
   border-radius: 3px;
   overflow: hidden;
   margin-bottom: 0.5rem;
@@ -241,7 +243,7 @@
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #673ab7, #9c27b0);
+  background: var(--gradient-primary);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -249,7 +251,7 @@
 .pages-progress {
   margin: 0 0 0.5rem;
   font-size: 0.75rem;
-  color: #888;
+  color: var(--text-secondary);
 }
 
 .status {
@@ -278,25 +280,25 @@
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-card);
 }
 
 .empty-state .material-icons {
   font-size: 4rem;
-  color: #ccc;
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
 .empty-state h2 {
   margin: 0 0 0.5rem;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .empty-state p {
   margin: 0 0 1.5rem;
-  color: #888;
+  color: var(--text-secondary);
 }
 
 .empty-state .material-icons {
