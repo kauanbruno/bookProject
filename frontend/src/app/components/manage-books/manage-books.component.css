@@ -1,0 +1,380 @@
+.manage-container {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+  padding: 2rem;
+}
+
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.manage-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.manage-header button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.manage-header .material-icons {
+  font-size: 1.25rem;
+}
+
+.search-section {
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 25px;
+  padding: 0 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 2px solid transparent;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  max-width: 400px;
+}
+
+.search-box:focus-within {
+  border-color: #673ab7;
+  box-shadow: 0 2px 12px rgba(103, 58, 183, 0.15);
+}
+
+.search-box .material-icons {
+  color: #888;
+  font-size: 1.25rem;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  background: none;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: #aaa;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.clear-btn:hover {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.clear-btn .material-icons {
+  font-size: 1.1rem;
+}
+
+.books-table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.books-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.books-table th {
+  background: linear-gradient(135deg, #673ab7, #9c27b0);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.books-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.books-table tr:last-child td {
+  border-bottom: none;
+}
+
+.books-table tr:hover {
+  background: #f8f9fa;
+}
+
+.title-cell {
+  font-weight: 500;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status.to-read {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.reading {
+  background: #cfe2ff;
+  color: #084298;
+}
+
+.status.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn .material-icons {
+  font-size: 1.25rem;
+}
+
+.icon-btn.edit {
+  color: #673ab7;
+}
+
+.icon-btn.edit:hover {
+  background: rgba(103, 58, 183, 0.1);
+}
+
+.icon-btn.delete {
+  color: #dc3545;
+}
+
+.icon-btn.delete:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-state .material-icons {
+  font-size: 4rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+  margin: 0 0 0.5rem;
+  color: #333;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #888;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.form-modal {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  border-radius: 12px 12px 0 0;
+}
+
+.form-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #666;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: #f0f0f0;
+}
+
+.close-btn .material-icons {
+  font-size: 1.5rem;
+}
+
+.book-form {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #673ab7;
+  box-shadow: 0 0 0 3px rgba(103, 58, 183, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.form-actions button {
+  min-width: 100px;
+}
+
+@media (max-width: 768px) {
+  .manage-container {
+    padding: 1rem;
+  }
+
+  .manage-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+
+  .books-table-container {
+    overflow-x: auto;
+  }
+
+  .books-table {
+    min-width: 600px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .manage-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .form-modal {
+    max-height: 95vh;
+  }
+
+  .book-form {
+    padding: 1rem;
+  }
+}

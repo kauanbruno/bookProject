@@ -1,1 +1,112 @@
-<p class="h-middle">Aqui vai ter um kanban separando por status, podendo alterar o status dos livros arrastando entre as colunas.</p>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="header-text">
+      <h1>Painel de Leitura</h1>
+      <p>Arraste os livros entre as colunas para atualizar seu status</p>
+    </div>
+    <div class="sort-controls">
+      <span class="sort-label">Ordenar por:</span>
+      <button class="sort-btn" [class.active]="sortField === 'title'" (click)="setSort('title')">
+        Titulo <i class="material-icons">{{ getSortIcon('title') }}</i>
+      </button>
+      <button class="sort-btn" [class.active]="sortField === 'pagesRead'" (click)="setSort('pagesRead')">
+        Paginas <i class="material-icons">{{ getSortIcon('pagesRead') }}</i>
+      </button>
+      <button class="sort-btn" [class.active]="sortField === 'publishedYear'" (click)="setSort('publishedYear')">
+        Ano <i class="material-icons">{{ getSortIcon('publishedYear') }}</i>
+      </button>
+    </div>
+  </div>
+
+  <div class="kanban-board">
+    <div class="kanban-column">
+      <div class="column-header todo">
+        <i class="material-icons">bookmark_border</i>
+        <h2>A Ler</h2>
+        <span class="count">{{ todoBooks.length }}</span>
+      </div>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todoBooks"
+        [cdkDropListConnectedTo]="[readingList, completedList]"
+        id="todoList"
+        class="column-list"
+        (cdkDropListDropped)="drop($event, 'To Read')">
+        <div class="book-card" *ngFor="let book of todoBooks" cdkDrag>
+          <div class="book-card-content">
+            <h3>{{ book.title }}</h3>
+            <p class="author">{{ book.author }}</p>
+            <div class="progress-bar">
+              <div class="progress" [style.width.%]="(book.pagesRead / book.totalPages) * 100"></div>
+            </div>
+            <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
+          </div>
+          <div class="drag-handle" cdkDragHandle>
+            <i class="material-icons">drag_indicator</i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <div class="column-header reading">
+        <i class="material-icons">auto_stories</i>
+        <h2>Lendo</h2>
+        <span class="count">{{ readingBooks.length }}</span>
+      </div>
+      <div
+        cdkDropList
+        #readingList="cdkDropList"
+        [cdkDropListData]="readingBooks"
+        [cdkDropListConnectedTo]="[todoList, completedList]"
+        id="readingList"
+        class="column-list"
+        (cdkDropListDropped)="drop($event, 'Reading')">
+        <div class="book-card" *ngFor="let book of readingBooks" cdkDrag>
+          <div class="book-card-content">
+            <h3>{{ book.title }}</h3>
+            <p class="author">{{ book.author }}</p>
+            <div class="progress-bar">
+              <div class="progress" [style.width.%]="(book.pagesRead / book.totalPages) * 100"></div>
+            </div>
+            <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
+          </div>
+          <div class="drag-handle" cdkDragHandle>
+            <i class="material-icons">drag_indicator</i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <div class="column-header completed">
+        <i class="material-icons">check_circle</i>
+        <h2>Concluidos</h2>
+        <span class="count">{{ completedBooks.length }}</span>
+      </div>
+      <div
+        cdkDropList
+        #completedList="cdkDropList"
+        [cdkDropListData]="completedBooks"
+        [cdkDropListConnectedTo]="[todoList, readingList]"
+        id="completedList"
+        class="column-list"
+        (cdkDropListDropped)="drop($event, 'Completed')">
+        <div class="book-card" *ngFor="let book of completedBooks" cdkDrag>
+          <div class="book-card-content">
+            <h3>{{ book.title }}</h3>
+            <p class="author">{{ book.author }}</p>
+            <div class="progress-bar">
+              <div class="progress completed" [style.width.%]="100"></div>
+            </div>
+            <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
+          </div>
+          <div class="drag-handle" cdkDragHandle>
+            <i class="material-icons">drag_indicator</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

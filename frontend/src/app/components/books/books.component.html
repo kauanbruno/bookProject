@@ -1,20 +1,47 @@
-<p class="h-middle">Aqui vai ter a lista de livros, podendo ordená-los por diferentes critérios.</p>
-<h2>Minha Lista de Livros</h2>
+<div class="books-container">
+  <div class="books-header">
+    <h1>Meus Livros</h1>
+    <div class="controls">
+      <div class="search-box">
+        <i class="material-icons">search</i>
+        <input
+          type="text"
+          placeholder="Buscar por titulo, autor ou editora..."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()">
+        <button class="clear-btn" *ngIf="searchTerm" (click)="searchTerm = ''; onSearchChange()">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
+      <div class="sort-controls">
+        <span class="sort-label">Ordenar:</span>
+        <button class="sort-btn" [class.active]="sortField === 'title'" (click)="setSort('title')">
+          Titulo <i class="material-icons">{{ getSortIcon('title') }}</i>
+        </button>
+        <button class="sort-btn" [class.active]="sortField === 'pagesRead'" (click)="setSort('pagesRead')">
+          Paginas <i class="material-icons">{{ getSortIcon('pagesRead') }}</i>
+        </button>
+        <button class="sort-btn" [class.active]="sortField === 'publishedYear'" (click)="setSort('publishedYear')">
+          Ano <i class="material-icons">{{ getSortIcon('publishedYear') }}</i>
+        </button>
+      </div>
+    </div>
+  </div>
 
-<div *ngIf="books?.length > 0; else noBooks">
-  <ul>
-    <li *ngFor="let book of books">
-      <h3>{{ book.title }}</h3>
-      <p>Autor: {{ book.author }}</p>
-      <p>Editora: {{ book.publisher }}</p>
-      <p>Ano: {{ book.publishedYear }}</p>
-      <p>Páginas: {{ book.pagesRead }} / {{ book.totalPages }}</p>
-      <p>Status: {{ book.status }}</p>
-      <hr>
-    </li>
-  </ul>
+  <div class="books-list" *ngIf="filteredBooks.length > 0; else noBooks">
+    <div class="book-item" *ngFor="let book of filteredBooks">
+      <span class="title">{{ book.title }}</span>
+      <span class="author">{{ book.author }}</span>
+      <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
+      <span class="status" [class]="getStatusClass(book.status)">{{ book.status }}</span>
+    </div>
+  </div>
+
+  <ng-template #noBooks>
+    <div class="empty-state">
+      <i class="material-icons">{{ searchTerm ? 'search_off' : 'library_books' }}</i>
+      <h2>{{ searchTerm ? 'Nenhum livro encontrado' : 'Nenhum livro cadastrado' }}</h2>
+      <p>{{ searchTerm ? 'Tente buscar com outros termos.' : 'Vá para Gerenciar Livros para adicionar novos livros.' }}</p>
+    </div>
+  </ng-template>
 </div>
-
-<ng-template #noBooks>
-  <p>Carregando livros ou nenhum livro encontrado...</p>
-</ng-template>

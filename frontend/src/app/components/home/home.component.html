@@ -1,1 +1,86 @@
-<span class="h-middle">Bem-vindo ao theBookProject! O plano é que aqui tenha os livros recentes acessados pelo usuário.</span>
+<div class="home-container">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bem-vindo ao <span class="highlight">theBookProject</span></h1>
+      <p>Acompanhe sua jornada de leitura, organize seus livros e alcance suas metas literárias.</p>
+      <div class="hero-actions">
+        <a routerLink="/books" mat-raised-button color="primary">
+          <i class="material-icons">book</i>
+          Ver Meus Livros
+        </a>
+        <a routerLink="/dashboard" mat-stroked-button>
+          <i class="material-icons">view_kanban</i>
+          Dashboard
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat-card">
+      <i class="material-icons">auto_stories</i>
+      <span class="stat-value">{{ books.length }}</span>
+      <span class="stat-label">Livros Cadastrados</span>
+    </div>
+    <div class="stat-card">
+      <i class="material-icons">menu_book</i>
+      <span class="stat-value">{{ getReadingCount() }}</span>
+      <span class="stat-label">Lendo Agora</span>
+    </div>
+    <div class="stat-card">
+      <i class="material-icons">check_circle</i>
+      <span class="stat-value">{{ getCompletedCount() }}</span>
+      <span class="stat-label">Concluídos</span>
+    </div>
+    <div class="stat-card">
+      <i class="material-icons">format_list_numbered</i>
+      <span class="stat-value">{{ getTotalPagesRead() }}</span>
+      <span class="stat-label">Páginas Lidas</span>
+    </div>
+  </section>
+
+  <section class="recent-books" *ngIf="recentBooks.length > 0">
+    <div class="section-header">
+      <h2>Leituras Recentes</h2>
+      <div class="sort-controls">
+        <span class="sort-label">Ordenar por:</span>
+        <button class="sort-btn" [class.active]="sortField === 'title'" (click)="setSort('title')">
+          Título <i class="material-icons">{{ getSortIcon('title') }}</i>
+        </button>
+        <button class="sort-btn" [class.active]="sortField === 'pagesRead'" (click)="setSort('pagesRead')">
+          Páginas <i class="material-icons">{{ getSortIcon('pagesRead') }}</i>
+        </button>
+        <button class="sort-btn" [class.active]="sortField === 'publishedYear'" (click)="setSort('publishedYear')">
+          Ano <i class="material-icons">{{ getSortIcon('publishedYear') }}</i>
+        </button>
+      </div>
+      <a routerLink="/books" class="view-all">Ver todos</a>
+    </div>
+    <div class="books-grid">
+      <div class="book-card" *ngFor="let book of recentBooks">
+        <div class="book-icon">
+          <i class="material-icons">book</i>
+        </div>
+        <div class="book-info">
+          <h3>{{ book.title }}</h3>
+          <p class="author">{{ book.author }}</p>
+          <div class="progress">
+            <div class="progress-bar" [style.width.%]="(book.pagesRead / book.totalPages) * 100"></div>
+          </div>
+          <p class="pages-progress">{{ book.pagesRead }} de {{ book.totalPages }} páginas</p>
+          <span class="status" [class]="getStatusClass(book.status)">{{ book.status }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="empty-state" *ngIf="books.length === 0">
+    <i class="material-icons">library_books</i>
+    <h2>Comece sua jornada literária</h2>
+    <p>Você ainda não tem livros cadastrados. Adicione seu primeiro livro para começar!</p>
+    <a routerLink="/books" mat-raised-button color="primary">
+      <i class="material-icons">add</i>
+      Adicionar Livro
+    </a>
+  </section>
+</div>
