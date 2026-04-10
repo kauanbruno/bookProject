@@ -4,9 +4,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +19,8 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { BooksComponent } from './components/books/books.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ManageBooksComponent } from './components/manage-books/manage-books.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,8 @@ import { ManageBooksComponent } from './components/manage-books/manage-books.com
     FooterComponent,
     BooksComponent,
     DashboardComponent,
-    ManageBooksComponent
+    ManageBooksComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +42,14 @@ import { ManageBooksComponent } from './components/manage-books/manage-books.com
     BrowserAnimationsModule,
     HttpClientModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

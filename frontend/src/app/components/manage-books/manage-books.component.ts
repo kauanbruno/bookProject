@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService, Book } from 'src/app/services/books.service';
+import { BooksService, Book, BookWithProgress } from 'src/app/services/books.service';
 
 @Component({
   selector: 'app-manage-books',
@@ -7,18 +7,19 @@ import { BooksService, Book } from 'src/app/services/books.service';
   styleUrls: ['./manage-books.component.css']
 })
 export class ManageBooksComponent implements OnInit {
-  books: Book[] = [];
-  filteredBooks: Book[] = [];
-  selectedBook: Book | null = null;
+  books: BookWithProgress[] = [];
+  filteredBooks: BookWithProgress[] = [];
+  selectedBook: BookWithProgress | null = null;
   isEditing = false;
   showForm = false;
   searchTerm = '';
 
-  formData: Partial<Book> = {
+  formData: Partial<Book> & { id: number } = {
+    id: 0,
     title: '',
     author: '',
     publisher: '',
-    publishedYear: 0,
+    publishedYear: new Date().getFullYear(),
     totalPages: 0,
     pagesRead: 0,
     status: 'To Read'
@@ -33,7 +34,7 @@ export class ManageBooksComponent implements OnInit {
   }
 
   loadBooks(): void {
-    this.booksService.getBooks().subscribe((data) => {
+    this.booksService.getAllBooks().subscribe((data) => {
       this.books = data;
       this.applyFilter();
     });
@@ -56,15 +57,25 @@ export class ManageBooksComponent implements OnInit {
     this.applyFilter();
   }
 
-  openForm(book?: Book): void {
+  openForm(book?: BookWithProgress): void {
     if (book) {
       this.selectedBook = book;
       this.isEditing = true;
-      this.formData = { ...book };
+      this.formData = {
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        publisher: book.publisher,
+        publishedYear: book.publishedYear,
+        totalPages: book.totalPages,
+        pagesRead: book.pagesRead || 0,
+        status: book.status
+      };
     } else {
       this.selectedBook = null;
       this.isEditing = false;
       this.formData = {
+        id: 0,
         title: '',
         author: '',
         publisher: '',

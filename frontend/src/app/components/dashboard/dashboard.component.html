@@ -32,15 +32,15 @@
         [cdkDropListConnectedTo]="[readingList, completedList]"
         id="todoList"
         class="column-list"
-        (cdkDropListDropped)="drop($event, 'To Read')">
+        (cdkDropListDropped)="drop($event, 'A Ler')">
         <div class="book-card" *ngFor="let book of todoBooks" cdkDrag>
           <div class="book-card-content">
             <h3>{{ book.title }}</h3>
             <p class="author">{{ book.author }}</p>
             <div class="progress-bar">
-              <div class="progress" [style.width.%]="(book.pagesRead / book.totalPages) * 100"></div>
+              <div class="progress" [style.width.%]="(getPagesRead(book) / book.totalPages) * 100"></div>
             </div>
-            <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
+            <span class="pages">{{ getPagesRead(book) }}/{{ book.totalPages }}</span>
           </div>
           <div class="drag-handle" cdkDragHandle>
             <i class="material-icons">drag_indicator</i>
@@ -62,15 +62,15 @@
         [cdkDropListConnectedTo]="[todoList, completedList]"
         id="readingList"
         class="column-list"
-        (cdkDropListDropped)="drop($event, 'Reading')">
+        (cdkDropListDropped)="drop($event, 'Lendo')">
         <div class="book-card" *ngFor="let book of readingBooks" cdkDrag>
           <div class="book-card-content">
             <h3>{{ book.title }}</h3>
             <p class="author">{{ book.author }}</p>
             <div class="progress-bar">
-              <div class="progress" [style.width.%]="(book.pagesRead / book.totalPages) * 100"></div>
+              <div class="progress" [style.width.%]="(getPagesRead(book) / book.totalPages) * 100"></div>
             </div>
-            <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
+            <span class="pages">{{ getPagesRead(book) }}/{{ book.totalPages }}</span>
           </div>
           <div class="drag-handle" cdkDragHandle>
             <i class="material-icons">drag_indicator</i>
@@ -92,7 +92,7 @@
         [cdkDropListConnectedTo]="[todoList, readingList]"
         id="completedList"
         class="column-list"
-        (cdkDropListDropped)="drop($event, 'Completed')">
+        (cdkDropListDropped)="drop($event, 'Concluído')">
         <div class="book-card" *ngFor="let book of completedBooks" cdkDrag>
           <div class="book-card-content">
             <h3>{{ book.title }}</h3>
@@ -100,7 +100,7 @@
             <div class="progress-bar">
               <div class="progress completed" [style.width.%]="100"></div>
             </div>
-            <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
+            <span class="pages">{{ getPagesRead(book) }}/{{ book.totalPages }}</span>
           </div>
           <div class="drag-handle" cdkDragHandle>
             <i class="material-icons">drag_indicator</i>

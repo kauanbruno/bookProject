@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-card-header">
+      <h1>theBookProject</h1>
+      <p>Entre para continuar</p>
+    </div>
+    <form (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="email" name="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password" required>
+      </mat-form-field>
+
+      <div class="login-error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button mat-raised-button color="primary" class="login-button" type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </form>
+<!-- <!   <div class="login-footer"> -->
+      <!-- <p>Use: admin@bookapp.com / admin123</p> -->
+    <!-- </div> -->
+
+  </div>
+</div>

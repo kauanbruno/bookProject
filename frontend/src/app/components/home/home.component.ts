@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService, Book } from 'src/app/services/books.service';
+import { BooksService, BookWithProgress } from 'src/app/services/books.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { TranslationService } from 'src/app/services/translation.service';
 
 type SortField = 'title' | 'pagesRead' | 'publishedYear';
 type SortDirection = 'asc' | 'desc';
@@ -10,22 +12,59 @@ type SortDirection = 'asc' | 'desc';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  books: Book[] = [];
-  recentBooks: Book[] = [];
+  books: BookWithProgress[] = [];
+  recentBooks: BookWithProgress[] = [];
   sortField: SortField = 'title';
   sortDirection: SortDirection = 'asc';
+  isLoggedIn = false;
 
-  constructor(private booksService: BooksService) { }
+  constructor(
+    private booksService: BooksService,
+    private authService: AuthService,
+    public translation: TranslationService
+  ) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.loadBooks();
   }
 
   loadBooks(): void {
-    this.booksService.getBooks().subscribe((data) => {
-      this.books = data;
-      this.updateSortedBooks();
-    });
+    if (this.isLoggedIn) {
+      this.booksService.getMyLibrary().subscribe((data) => {
+        this.books = data;
+        this.updateSortedBooks();
+      });
+    } else {
+      this.booksService.getAllBooks().subscribe((data) => {
+        this.books = data.slice(0, 10);
+        this.updateSortedBooks();
+      });
+    }
+  }
+
+  getStatus(book: BookWithProgress): string {
+    if (this.isLoggedIn) {
+      if (book.inLibrary && book.userStatus) {
+        return this.translation.translateStatus(book.userStatus);
+      }
+      return '';
+    }
+    return this.translation.translateStatus(book.status);
+  }
+
+  hasStatus(book: BookWithProgress): boolean {
+    if (this.isLoggedIn) {
+      return !!(book.inLibrary && book.userStatus);
+    }
+    return true;
+  }
+
+  getPagesRead(book: BookWithProgress): number {
+    if (this.isLoggedIn && book.userStatus) {
+      return book.userPagesRead;
+    }
+    return book.pagesRead;
   }
 
   updateSortedBooks(): void {
@@ -36,7 +75,7 @@ export class HomeComponent implements OnInit {
           comparison = a.title.localeCompare(b.title);
           break;
         case 'pagesRead':
-          comparison = a.pagesRead - b.pagesRead;
+          comparison = this.getPagesRead(a) - this.getPagesRead(b);
           break;
         case 'publishedYear':
           comparison = a.publishedYear - b.publishedYear;
@@ -63,18 +102,25 @@ export class HomeComponent implements OnInit {
   }
 
   getReadingCount(): number {
-    return this.books.filter(b => b.status === 'Reading').length;
+    return this.books.filter(b => b.inLibrary && this.translation.translateStatus(b.userStatus || '') === this.translation.translateStatus('Reading')).length;
   }
 
   getCompletedCount(): number {
-    return this.books.filter(b => b.status === 'Completed').length;
+    return this.books.filter(b => b.inLibrary && this.translation.translateStatus(b.userStatus || '') === this.translation.translateStatus('Completed')).length;
   }
 
   getTotalPagesRead(): number {
-    return this.books.reduce((sum, b) => sum + b.pagesRead, 0);
+    return this.books.reduce((sum, b) => {
+      if (this.isLoggedIn && b.inLibrary) {
+        return sum + (b.userPagesRead || 0);
+      }
+      return sum + b.pagesRead;
+    }, 0);
   }
 
-  getStatusClass(status: string): string {
+  getStatusClass(book: BookWithProgress): string {
+    const status = this.getStatus(book);
+    if (!status) return 'available';
     return status.toLowerCase().replace(' ', '-');
   }
 }

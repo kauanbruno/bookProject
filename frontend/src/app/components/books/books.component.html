@@ -1,47 +1,117 @@
 <div class="books-container">
   <div class="books-header">
-    <h1>Meus Livros</h1>
+    <h1>Biblioteca</h1>
+    <div class="filter-tabs" *ngIf="isLoggedIn">
+      <button [class.active]="filterMode === 'all'" (click)="setFilter('all')">
+        Todos os Livros
+      </button>
+      <button [class.active]="filterMode === 'library'" (click)="setFilter('library')">
+        Minha Biblioteca
+      </button>
+    </div>
     <div class="controls">
       <div class="search-box">
-        <i class="material-icons">search</i>
+        <span class="material-icons">search</span>
         <input
           type="text"
           placeholder="Buscar por titulo, autor ou editora..."
           [(ngModel)]="searchTerm"
           (ngModelChange)="onSearchChange()">
         <button class="clear-btn" *ngIf="searchTerm" (click)="searchTerm = ''; onSearchChange()">
-          <i class="material-icons">close</i>
+          <span class="material-icons">close</span>
         </button>
       </div>
       <div class="sort-controls">
         <span class="sort-label">Ordenar:</span>
         <button class="sort-btn" [class.active]="sortField === 'title'" (click)="setSort('title')">
-          Titulo <i class="material-icons">{{ getSortIcon('title') }}</i>
+          Titulo <span class="material-icons">{{ getSortIcon('title') }}</span>
         </button>
         <button class="sort-btn" [class.active]="sortField === 'pagesRead'" (click)="setSort('pagesRead')">
-          Paginas <i class="material-icons">{{ getSortIcon('pagesRead') }}</i>
+          Paginas <span class="material-icons">{{ getSortIcon('pagesRead') }}</span>
         </button>
         <button class="sort-btn" [class.active]="sortField === 'publishedYear'" (click)="setSort('publishedYear')">
-          Ano <i class="material-icons">{{ getSortIcon('publishedYear') }}</i>
+          Ano <span class="material-icons">{{ getSortIcon('publishedYear') }}</span>
         </button>
       </div>
     </div>
   </div>
 
+  <div class="books-grid" *ngIf="filteredBooks.length > 0; else noBooks">
+    <div class="book-card" *ngFor="let book of filteredBooks">
+      <div class="book-card-icon">
+        <span class="material-icons">menu_book</span>
+      </div>
+      <div class="book-card-content">
+        <h3 class="book-title">{{ book.title }}</h3>
+        <p class="book-author">{{ book.author }}</p>
+        <div class="book-meta">
+          <span class="book-pages" *ngIf="hasStatus(book)">
+            {{ getPagesRead(book) }}/{{ book.totalPages }} paginas
+          </span>
+          <span class="book-pages" *ngIf="!hasStatus(book)">
+            {{ book.totalPages }} paginas
+          </span>
+          <span class="book-year">{{ book.publishedYear }}</span>
+        </div>
+        <div class="book-status-row">
+          <span class="status" *ngIf="hasStatus(book)" [class]="getStatusClass(book)">{{ getStatus(book) }}</span>
+          <span class="status available" *ngIf="!hasStatus(book)">{{ translation.translateAvailable() }}</span>
+        </div>
+      </div>
+      <div class="book-card-actions">
+        <button 
+          *ngIf="isLoggedIn && !book.inLibrary" 
+          class="add-btn" 
+          (click)="addToLibrary(book)"
+          title="Adicionar a minha biblioteca">
+          <span class="material-icons">add</span>
+        </button>
+        <span *ngIf="isLoggedIn && book.inLibrary" class="in-library">
+          <span class="material-icons">check_circle</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
   <div class="books-list" *ngIf="filteredBooks.length > 0; else noBooks">
+    <div class="list-header">
+      <span class="col-title">Titulo</span>
+      <span class="col-author">Autor</span>
+      <span class="col-pages">Paginas</span>
+      <span class="col-status">Status</span>
+      <span class="col-actions"></span>
+    </div>
     <div class="book-item" *ngFor="let book of filteredBooks">
-      <span class="title">{{ book.title }}</span>
-      <span class="author">{{ book.author }}</span>
-      <span class="pages">{{ book.pagesRead }}/{{ book.totalPages }}</span>
-      <span class="status" [class]="getStatusClass(book.status)">{{ book.status }}</span>
+      <span class="col-title">{{ book.title }}</span>
+      <span class="col-author">{{ book.author }}</span>
+      <span class="col-pages">
+        <span *ngIf="hasStatus(book)">{{ getPagesRead(book) }}/{{ book.totalPages }}</span>
+        <span *ngIf="!hasStatus(book)">{{ book.totalPages }}</span>
+      </span>
+      <span class="col-status">
+        <span class="status" *ngIf="hasStatus(book)" [class]="getStatusClass(book)">{{ getStatus(book) }}</span>
+        <span class="status available" *ngIf="!hasStatus(book)">{{ translation.translateAvailable() }}</span>
+      </span>
+      <span class="col-actions">
+        <button 
+          *ngIf="isLoggedIn && !book.inLibrary" 
+          class="add-btn" 
+          (click)="addToLibrary(book)"
+          title="Adicionar a minha biblioteca">
+          <span class="material-icons">add</span>
+        </button>
+        <span *ngIf="isLoggedIn && book.inLibrary" class="in-library">
+          <span class="material-icons">check_circle</span>
+        </span>
+      </span>
     </div>
   </div>
 
   <ng-template #noBooks>
     <div class="empty-state">
-      <i class="material-icons">{{ searchTerm ? 'search_off' : 'library_books' }}</i>
-      <h2>{{ searchTerm ? 'Nenhum livro encontrado' : 'Nenhum livro cadastrado' }}</h2>
-      <p>{{ searchTerm ? 'Tente buscar com outros termos.' : 'Vá para Gerenciar Livros para adicionar novos livros.' }}</p>
+      <span class="material-icons">{{ searchTerm ? 'search_off' : 'library_books' }}</span>
+      <h2>{{ searchTerm ? 'Nenhum livro encontrado' : (filterMode === 'library' ? 'Sua biblioteca esta vazia' : 'Nenhum livro disponivel') }}</h2>
+      <p>{{ searchTerm ? 'Tente buscar com outros termos.' : (filterMode === 'library' ? 'Adicione livros da aba Todos os Livros' : 'Nenhum livro encontrado') }}</p>
     </div>
   </ng-template>
 </div>

@@ -1,28 +1,40 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <mat-toolbar class="header mat-elevation-z12">
-    <span>
+    <span class="header-logo">
         <a routerLink="/">
             <img class="logo" src="./assets/img/logo.png" alt="logo">
         </a>
     </span> 
-    <span class="title-group">
-        <a>
-            <a routerLink="/books">
-                <i class="material-icons">
-                book_2
-            </i>
-            </a>
-            <a routerLink="/dashboard">
-                <i class="material-icons">
-                view_kanban
-            </i>
-            </a>
-            <a routerLink="/manage">
-                <i class="material-icons">
-                library_add
-            </i>
-            </a>
+    <button mat-icon-button class="menu-toggle" (click)="toggleMenu()" *ngIf="isMobileMenu">
+        <span class="material-icons">menu</span>
+    </button>
+    <span class="header-nav" [class.mobile-open]="mobileMenuOpen">
+        <a routerLink="/books" title="Livros">
+            <span class="material-icons">library_books</span>
+            <span class="nav-label">Livros</span>
+        </a>
+        <a routerLink="/dashboard" title="Dashboard" *ngIf="isLoggedIn">
+            <span class="material-icons">dashboard</span>
+            <span class="nav-label">Dashboard</span>
+        </a>
+        <a routerLink="/manage" *ngIf="isLoggedIn && authService.isAdmin()" title="Gerenciar Livros">
+            <span class="material-icons">post_add</span>
+            <span class="nav-label">Gerenciar</span>
         </a>
     </span>
-        
+    <span class="spacer"></span>
+    <span *ngIf="isLoggedIn" class="user-info">
+        <span class="user-name">{{ (currentUser$ | async)?.name }}</span>
+        <button mat-icon-button (click)="logout()" title="Sair">
+            <span class="material-icons">logout</span>
+        </button>
+    </span>
+    <button mat-icon-button (click)="toggleTheme()" class="theme-toggle" [title]="isDarkMode ? 'Modo Claro' : 'Modo Escuro'">
+        <span class="material-icons">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
+    </button>
+    <a *ngIf="!isLoggedIn" routerLink="/login" mat-button class="login-btn">
+        <span class="material-icons">login</span>
+        <span class="login-label">Login</span>
+    </a>
 </mat-toolbar>
+<div class="overlay" *ngIf="mobileMenuOpen" (click)="closeMenu()"></div>

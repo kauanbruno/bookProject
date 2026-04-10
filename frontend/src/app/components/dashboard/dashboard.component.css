@@ -1,5 +1,5 @@
 .dashboard-container {
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 100px);
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
   padding: 1rem;
   overflow-x: auto;
@@ -104,31 +104,20 @@
 }
 
 .column-header.todo {
-  background: linear-gradient(135deg, #fff3cd, #ffeeba);
+  background: linear-gradient(135deg, #856404, #b38600);
 }
 
 .column-header.reading {
-  background: linear-gradient(135deg, #cfe2ff, #b6d4fe);
+  background: linear-gradient(135deg, #084298, #0d47a1);
 }
 
 .column-header.completed {
-  background: linear-gradient(135deg, #d4edda, #c3e6cb);
+  background: linear-gradient(135deg, #155724, #2e7d32);
 }
 
 .column-header .material-icons {
   font-size: 1.5rem;
-}
-
-.column-header.todo .material-icons {
-  color: #856404;
-}
-
-.column-header.reading .material-icons {
-  color: #084298;
-}
-
-.column-header.completed .material-icons {
-  color: #155724;
+  color: white !important;
 }
 
 .column-header h2 {
@@ -136,22 +125,12 @@
   font-weight: 600;
   margin: 0;
   flex: 1;
-}
-
-.column-header.todo h2 {
-  color: #856404;
-}
-
-.column-header.reading h2 {
-  color: #084298;
-}
-
-.column-header.completed h2 {
-  color: #155724;
+  color: white !important;
 }
 
 .column-header .count {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
   padding: 0.25rem 0.6rem;
   border-radius: 12px;
   font-size: 0.85rem;
@@ -169,12 +148,12 @@
 .book-card {
   background: white;
   border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   cursor: grab;
   transition: box-shadow 0.2s, transform 0.2s;
 }
@@ -195,7 +174,7 @@
 
 .book-card-content h3 {
   margin: 0 0 0.25rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #333;
   white-space: nowrap;
@@ -307,25 +286,71 @@
 
 @media (max-width: 600px) {
   .dashboard-container {
-    padding: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 
   .dashboard-header h1 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .dashboard-header p {
+    font-size: 0.8rem;
+  }
+
+  .sort-controls {
+    width: 100%;
   }
 
   .kanban-board {
     flex-direction: column;
     height: auto;
+    gap: 0.75rem;
   }
 
   .kanban-column {
     flex: 1 1 100%;
     max-height: none;
     min-width: 100%;
+    padding: 0.75rem;
+  }
+
+  .column-header {
+    padding: 0.5rem;
+  }
+
+  .column-header h2 {
+    font-size: 1rem;
   }
 
   .column-list {
-    max-height: 400px;
+    max-height: 300px;
+  }
+
+  .book-card {
+    padding: 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .book-card-content h3 {
+    font-size: 0.85rem;
+  }
+
+  .book-card-content .author {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .book-card-content .pages {
+    font-size: 0.7rem;
+  }
+
+  .drag-handle {
+    display: none;
   }
 }

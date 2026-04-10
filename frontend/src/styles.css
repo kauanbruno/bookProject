@@ -16,3 +16,526 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
 }
 
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-theme .mat-toolbar,
+body.dark-theme mat-toolbar {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0;
+}
+
+body.dark-theme .mat-card {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+}
+
+body.dark-theme .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #666;
+}
+
+body.dark-theme input,
+body.dark-theme input::placeholder {
+    color: #e0e0e0;
+}
+
+body.dark-theme .mat-input-element {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-form-field-label {
+    color: #aaa !important;
+}
+
+body.dark-theme .books-container,
+body.dark-theme .home-container,
+body.dark-theme .dashboard-container,
+body.dark-theme .manage-container,
+body.dark-theme .login-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #121212 100%) !important;
+}
+
+body.dark-theme .books-list,
+body.dark-theme .stat-card,
+body.dark-theme .book-card,
+body.dark-theme .login-card,
+body.dark-theme .empty-state,
+body.dark-theme .section-header,
+body.dark-theme .kanban-column {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0;
+}
+
+body.dark-theme .book-item {
+    background-color: #333333 !important;
+    border-color: #444 !important;
+}
+
+body.dark-theme .book-item:hover {
+    background-color: #3d3d3d !important;
+}
+
+body.dark-theme .search-box {
+    background-color: #2d2d2d !important;
+    border: 2px solid #444 !important;
+}
+
+body.dark-theme .search-box input {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .search-box .material-icons {
+    color: #aaa !important;
+}
+
+body.dark-theme .sort-btn,
+body.dark-theme .filter-tabs button {
+    background-color: #2d2d2d !important;
+    border-color: #444 !important;
+    color: #aaa !important;
+}
+
+body.dark-theme .sort-btn:hover,
+body.dark-theme .filter-tabs button:hover {
+    border-color: #673ab7 !important;
+    color: #673ab7 !important;
+}
+
+body.dark-theme .sort-btn.active,
+body.dark-theme .filter-tabs button.active {
+    background: linear-gradient(135deg, #673ab7, #9c27b0) !important;
+    border-color: #673ab7 !important;
+    color: white !important;
+}
+
+body.dark-theme .sort-label {
+    color: #aaa !important;
+}
+
+body.dark-theme .title {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .author {
+    color: #aaa !important;
+}
+
+body.dark-theme .pages {
+    color: #888 !important;
+}
+
+body.dark-theme .stat-card .material-icons {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .stat-value {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .stat-label {
+    color: #aaa !important;
+}
+
+body.dark-theme .hero-content h1 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .hero-content p {
+    color: #aaa !important;
+}
+
+body.dark-theme .section-header h2 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .book-icon {
+    background: linear-gradient(135deg, #673ab7, #9c27b0) !important;
+}
+
+body.dark-theme .progress {
+    background-color: #444 !important;
+}
+
+body.dark-theme .progress-bar {
+    background: linear-gradient(90deg, #673ab7, #9c27b0) !important;
+}
+
+body.dark-theme .pages-progress {
+    color: #aaa !important;
+}
+
+body.dark-theme .status.to-read {
+    background-color: #4a3f00 !important;
+    color: #ffd54f !important;
+}
+
+body.dark-theme .status.reading {
+    background-color: #002040 !important;
+    color: #64b5f6 !important;
+}
+
+body.dark-theme .status.completed {
+    background-color: #003c00 !important;
+    color: #81c784 !important;
+}
+
+body.dark-theme .status.available {
+    background-color: #333 !important;
+    color: #888 !important;
+}
+
+body.dark-theme .empty-state .material-icons {
+    color: #555 !important;
+}
+
+body.dark-theme .empty-state h2 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .empty-state p {
+    color: #aaa !important;
+}
+
+body.dark-theme .login-card-header h1 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .login-card-header p {
+    color: #aaa !important;
+}
+
+body.dark-theme .login-footer p {
+    color: #888 !important;
+}
+
+body.dark-theme .login-footer a {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .login-error {
+    background-color: #3d1a1a !important;
+    color: #ef9a9a !important;
+}
+
+body.dark-theme .add-btn {
+    background: linear-gradient(135deg, #673ab7, #9c27b0) !important;
+}
+
+body.dark-theme .in-library {
+    color: #4caf50 !important;
+}
+
+body.dark-theme .view-all {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .user-info {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .user-info button {
+    color: #aaa !important;
+}
+
+body.dark-theme .user-info button:hover {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .theme-toggle {
+    color: #aaa !important;
+}
+
+body.dark-theme .theme-toggle:hover {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .login-btn {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .footer {
+    background-color: #1e1e1e !important;
+    color: #aaa !important;
+}
+
+body.dark-theme .mat-form-field.mat-focused .mat-form-field-label {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .mat-form-field.mat-focused .mat-form-field-outline-thick {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .cdk-overlay-dark-backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-theme .mat-select-value,
+body.dark-theme .mat-select-arrow {
+    color: #e0e0e0;
+}
+
+body.dark-theme .mat-option {
+    color: #e0e0e0;
+}
+
+body.dark-theme .mat-select-panel {
+    background-color: #2d2d2d;
+}
+
+/* Header dark theme */
+body.dark-theme .header-nav a {
+    color: #aaa !important;
+}
+
+body.dark-theme .header-logo a {
+    color: #aaa !important;
+}
+
+body.dark-theme .header-nav a:hover {
+    background: rgba(103, 58, 183, 0.2) !important;
+    color: #9c27b0 !important;
+}
+
+/* Books page dark theme */
+body.dark-theme .books-header h1 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .books-list {
+    background-color: #2d2d2d !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+body.dark-theme .clear-btn {
+    color: #aaa !important;
+}
+
+body.dark-theme .clear-btn:hover {
+    background: #3d3d3d !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .status {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Dashboard dark theme */
+body.dark-theme .dashboard-header h1 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .dashboard-header p {
+    color: #aaa !important;
+}
+
+body.dark-theme .column-header h2 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .column-header .count {
+    color: #aaa !important;
+}
+
+body.dark-theme .book-card-content h3 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .book-card-content .author {
+    color: #aaa !important;
+}
+
+body.dark-theme .book-card-content .pages {
+    color: #888 !important;
+}
+
+body.dark-theme .drag-handle {
+    color: #666 !important;
+}
+
+body.dark-theme .drag-handle:hover {
+    color: #9c27b0 !important;
+}
+
+/* Manage books dark theme */
+body.dark-theme .manage-header h1 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .manage-header .subtitle {
+    color: #aaa !important;
+}
+
+body.dark-theme .form-container h2 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .form-group label {
+    color: #aaa !important;
+}
+
+body.dark-theme .form-actions .cancel-btn {
+    color: #aaa !important;
+}
+
+body.dark-theme .form-actions .cancel-btn:hover {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .books-table {
+    background-color: #2d2d2d !important;
+}
+
+body.dark-theme .books-table th {
+    color: #aaa !important;
+    background-color: #252525 !important;
+}
+
+body.dark-theme .books-table td {
+    color: #e0e0e0 !important;
+    border-color: #444 !important;
+}
+
+body.dark-theme .table-empty {
+    color: #888 !important;
+}
+
+body.dark-theme .edit-btn,
+body.dark-theme .delete-btn {
+    color: #aaa !important;
+}
+
+body.dark-theme .edit-btn:hover {
+    color: #9c27b0 !important;
+}
+
+body.dark-theme .delete-btn:hover {
+    color: #f44336 !important;
+}
+
+/* Login page dark theme */
+body.dark-theme .login-card {
+    background-color: #2d2d2d !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+}
+
+/* Home page dark theme */
+body.dark-theme .stat-card {
+    background-color: #2d2d2d !important;
+}
+
+body.dark-theme .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+body.dark-theme .book-info h3 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .view-all:hover {
+    color: #9c27b0 !important;
+}
+
+/* Global text colors for dark theme */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme div {
+    color: #aaa;
+}
+
+body.dark-theme a {
+    color: #9c27b0;
+}
+
+body.dark-theme button {
+    color: inherit;
+}
+
+/* Material button overrides for dark theme */
+body.dark-theme .mat-button,
+body.dark-theme .mat-raised-button,
+body.dark-theme .mat-stroked-button {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .mat-raised-button.mat-primary {
+    background: linear-gradient(135deg, #673ab7, #9c27b0) !important;
+    color: white !important;
+}
+
+/* Scrollbar styling for dark theme */
+body.dark-theme ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+body.dark-theme ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Additional dark theme fixes */
+body.dark-theme .mat-icon {
+    color: inherit;
+}
+
+body.dark-theme .mat-form-field-subscript-wrapper {
+    color: #aaa;
+}
+
+body.dark-theme .mat-select-panel .mat-option.mat-selected {
+    background-color: rgba(103, 58, 183, 0.2);
+}
+
+/* Dashboard columns */
+body.dark-theme .column-header.todo {
+    background: linear-gradient(135deg, #5c4300, #7a5c00) !important;
+}
+
+body.dark-theme .column-header.reading {
+    background: linear-gradient(135deg, #003c6e, #00529e) !important;
+}
+
+body.dark-theme .column-header.completed {
+    background: linear-gradient(135deg, #004d23, #00692e) !important;
+}
+
+body.dark-theme .kanban-column {
+    background-color: #252525 !important;
+    border: 1px solid #3a3a3a !important;
+}
+
+body.dark-theme .column-list {
+    background-color: #1e1e1e !important;
+}

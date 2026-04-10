@@ -1,22 +1,50 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
-  private apiUrl = 'http://localhost:3001/books';
+  private apiUrl = 'http://localhost:3001';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.apiUrl);
+  getAllBooks(): Observable<BookWithProgress[]> {
+    if (this.authService.isLoggedIn()) {
+      return this.http.get<BookWithProgress[]>(`${this.apiUrl}/books/with-progress`);
+    }
+    return this.http.get<Book[]>(`${this.apiUrl}/books`).pipe(
+      map(books => books.map(b => ({
+        ...b,
+        inLibrary: false,
+        userStatus: null,
+        userPagesRead: 0
+      })))
+    );
+  }
+
+  getMyLibrary(): Observable<BookWithProgress[]> {
+    return this.http.get<BookWithProgress[]>(`${this.apiUrl}/my-library`);
+  }
+
+  addToLibrary(bookId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/userBooks`, { 
+      bookId, 
+      status: 'To Read', 
+      pagesRead: 0 
+    });
+  }
+
+  updateBookStatus(bookId: number, status: string, pagesRead?: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/userBooks`, { bookId, status, pagesRead });
   }
 
   getBook(id: number): Observable<Book> {
-    return this.http.get<Book>(`${this.apiUrl}/${id}`);
+    return this.http.get<Book>(`${this.apiUrl}/books/${id}`);
   }
 
   createBook(book: Omit<Book, 'id'>): Observable<Book> {
@@ -24,19 +52,11 @@ export class BooksService {
   }
 
   updateBook(book: Book): Observable<Book> {
-    return this.http.put<Book>(`${this.apiUrl}/${book.id}`, book);
-  }
-
-  updateBookStatus(id: number, status: string, pagesRead?: number): Observable<Book> {
-    const body: any = { status };
-    if (pagesRead !== undefined) {
-      body.pagesRead = pagesRead;
-    }
-    return this.http.patch<Book>(`${this.apiUrl}/${id}`, body);
+    return this.http.put<Book>(`${this.apiUrl}/books/${book.id}`, book);
   }
 
   deleteBook(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/books/${id}`);
   }
 }
 
@@ -49,4 +69,10 @@ export interface Book {
   totalPages: number;
   pagesRead: number;
   status: string;
+}
+
+export interface BookWithProgress extends Book {
+  inLibrary?: boolean;
+  userStatus: string | null;
+  userPagesRead: number;
 }
